@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Content - Ghostwriter Blog</title>
+<link href="https://styx-static.github.io/styx-theme-casper/feed.xml" rel="alternate" type="application/atom+xml" />
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css" rel="stylesheet" type="text/css" />
+<link href="https://styx-static.github.io/styx-theme-casper/styles/style.css" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic" rel="stylesheet" type="text/css" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.png">
+
+<meta name="description" content="Ghostwriter example description">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta property="og:title" content="Ghostwriter example">
+<meta property="og:description" content="Ghostwriter example description">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://styx-static.github.io/styx-theme-casper/">
+</head>
+<body>
+<div id="wrapper">
+<header class="site-header">
+<div class="container">
+<div class="site-title-wrapper">
+<h1 class="site-title">
+<a title="Ghostwriter Blog" href="https://styx-static.github.io/styx-theme-casper/">Ghostwriter Blog</a>
+</h1>
+
+<!-- rss -->
+<a class="button-square" href="https://styx-static.github.io/styx-theme-casper/feed.xml"><i class="fa fa-rss"></i></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<ul class="site-nav">
+<li class="site-nav-item"><a href="https://styx-static.github.io/styx-theme-casper/index.html" title="Home">Home</a></li>
+
+<li class="site-nav-item"><a href="https://styx-static.github.io/styx-theme-casper/about.html" title="About">About</a></li>
+
+</ul>
+
+</header>
+<div id="container">
+<div class="container">
+  <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">Content</h1>
+      <p class="post-description" itemprop="description"><p>This post introduce how to manage content in styx.</p>
+</p>
+
+      <p class="post-date">
+        <span>Published <time datetime="2014-09-28" itemprop="datePublished">Sun, Sep 28, 2014</time></span>
+        <span>by</span>
+<span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+  <span itemprop="name">
+    John Doe
+  </span>
+</span>
+
+      </p>
+    </header>
+
+    <div class="post-content clearfix" itemprop="articleBody">
+      <p>Content, also called as data in <code>site.nix</code> or the documentation, refers to the content used to generate a site.</p>
+
+<p>Multiple formats are supported:</p>
+
+<ul>
+<li>Markdown</li>
+<li>Asciidoc</li>
+<li>Nix</li>
+</ul>
+
+<p>Multiple data formats can be mixed without trouble in the same site.</p>
+
+<h2 id="nixdata">Nix data</h2>
+
+<p>Nix data can be used to create structured data, example from the agency theme data used for generating team information:</p>
+
+<pre><code class="nix">[
+  {
+    img = &quot;1.jpg&quot;;
+    name = &quot;Kay Garland&quot;;
+    position = &quot;Lead Designer&quot;;
+    social = [
+      { type = &quot;twitter&quot;; link = &quot;#&quot;; }
+      { type = &quot;facebook&quot;; link = &quot;#&quot;; }
+      { type = &quot;linkedin&quot;; link = &quot;#&quot;; }
+    ];
+  }
+  {
+    img = &quot;2.jpg&quot;;
+    name = &quot;Larry Parker&quot;;
+    position = &quot;Lead Marketer&quot;;
+    social = [
+      { type = &quot;twitter&quot;; link = &quot;#&quot;; }
+      { type = &quot;facebook&quot;; link = &quot;#&quot;; }
+      { type = &quot;linkedin&quot;; link = &quot;#&quot;; }
+    ];
+  }
+]
+</code></pre>
+
+<p>Note: Nix data can be also be declared as a function so parameters can be passed to it.</p>
+
+<h2 id="markupdata">Markup data</h2>
+
+<p>Markup data is data written in markdown or asciidoc format.</p>
+
+<p>Each format is fully supported and allow some extra features.</p>
+
+<h3 id="multipagecontent">Multipage content</h3>
+
+<p>The page separator <code>&lt;&lt;&lt;</code> can be used to split a markup file in multiple pages:</p>
+
+<pre><code class="markdown">## Lorem ipsum
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+&lt;&lt;&lt;
+
+## Nulla facilisi
+
+Sed turpis felis, luctus ac mauris nec, sollicitudin commodo urna. Etiam eleifend interdum velit, quis egestas elit commodo nec.
+
+&lt;&lt;&lt; 
+
+## Duis ex magna
+
+Duis ex magna, ultrices non mauris eget, auctor dictum mi. In porta dictum finibus. Nulla ultricies nunc ut risus maximus, non maximus nunc elementum.
+</code></pre>
+
+<hr />
+
+<p>This page is a multipage post, use the navigation below to access the next page.</p>
+
+
+      <nav class="pagination" role="navigation">
+  <span class="page-number">Page 1 of 2</span>
+  
+  <a class="older-posts" href="https://styx-static.github.io/styx-theme-casper/posts/2016-09-15-data-2.html">Next Page &rarr;</a>
+
+</nav>
+ 
+    </div>
+  </article>
+</div>
+
+</div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="site-title-wrapper">
+      <h1 class="site-title">
+          <a title="Ghostwriter Blog" href="https://styx-static.github.io/styx-theme-casper/">Ghostwriter Blog</a>
+      </h1>
+      <a class="button-square button-jump-top js-jump-top" href="#">
+          <i class="fa fa-angle-up"></i>
+      </a>
+    </div>
+
+    <p class="footer-copyright">
+        <span>&copy; 2017. All rights reserved. 
+</span>
+    </p>
+    <p class="footer-copyright">
+        <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>
+    </p>
+  </div>
+</footer>
+<script crossorigin="anonymous" src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+<script crossorigin="anonymous" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+<script crossorigin="anonymous" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/nix.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

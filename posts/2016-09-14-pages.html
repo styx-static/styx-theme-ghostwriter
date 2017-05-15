@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pages - Ghostwriter Blog</title>
+<link href="https://styx-static.github.io/styx-theme-casper/feed.xml" rel="alternate" type="application/atom+xml" />
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css" rel="stylesheet" type="text/css" />
+<link href="https://styx-static.github.io/styx-theme-casper/styles/style.css" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic" rel="stylesheet" type="text/css" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.png">
+
+<meta name="description" content="Ghostwriter example description">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta property="og:title" content="Ghostwriter example">
+<meta property="og:description" content="Ghostwriter example description">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://styx-static.github.io/styx-theme-casper/">
+</head>
+<body>
+<div id="wrapper">
+<header class="site-header">
+<div class="container">
+<div class="site-title-wrapper">
+<h1 class="site-title">
+<a title="Ghostwriter Blog" href="https://styx-static.github.io/styx-theme-casper/">Ghostwriter Blog</a>
+</h1>
+
+<!-- rss -->
+<a class="button-square" href="https://styx-static.github.io/styx-theme-casper/feed.xml"><i class="fa fa-rss"></i></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<ul class="site-nav">
+<li class="site-nav-item"><a href="https://styx-static.github.io/styx-theme-casper/index.html" title="Home">Home</a></li>
+
+<li class="site-nav-item"><a href="https://styx-static.github.io/styx-theme-casper/about.html" title="About">About</a></li>
+
+</ul>
+
+</header>
+<div id="container">
+<div class="container">
+  <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">Pages</h1>
+      <p class="post-description" itemprop="description"><p>This post introduce how a styx site site generate pages.</p>
+</p>
+
+      <p class="post-date">
+        <span>Published <time datetime="2014-09-28" itemprop="datePublished">Sun, Sep 28, 2014</time></span>
+        <span>by</span>
+<span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+  <span itemprop="name">
+    John Doe
+  </span>
+</span>
+
+      </p>
+    </header>
+
+    <div class="post-content clearfix" itemprop="articleBody">
+      <p>In <code>site.nix</code>, a page is declared as an attribute set in the <code>pages</code> attribute, example:</p>
+
+<pre><code class="nix">pages = {
+  about = {
+    path     = &quot;/about.html&quot;;
+    template = templates.page.full;
+    layout   = templates.layout;
+  } // data.about;
+};
+</code></pre>
+
+<p>Note: This example merges a data set in the page set, this is usual way to create pages from data.</p>
+
+<h2 id="basics">Basics</h2>
+
+<p>During site generation, styx evaluates <code>generatePage</code> on each <code>pages</code> page.<br/>
+<code>generatePage</code> definition is <code>page: pages.layout (page.template page)</code>, it simply evaluates a page set by its template, and evaluate that result with the layout.<br/>
+The generated page content is output in the page <code>path</code> file.</p>
+
+<p>A simple example of a page is:</p>
+
+<pre><code class="nix">pages = {
+  hello = {
+    layout = template: &quot;&lt;html&gt;&lt;body&gt;${template}&lt;/body&gt;&lt;/html&gt;&quot;;
+    template = page: ''
+      &lt;h1&gt;Styx example page&lt;/h1&gt;
+      ${page.content}
+    '';
+    content = &quot;&lt;p&gt;Hello world!&lt;/p&gt;&quot;;
+    path = &quot;/hello.html&quot;;
+  };
+}
+</code></pre>
+
+<p>Will generate <code>/hello.html</code> with the following contents:</p>
+
+<pre><code class="html">&lt;html&gt;&lt;body&gt;&lt;h1&gt;Styx example page&lt;/h1&gt;
+&lt;p&gt;Hello world!&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+</code></pre>
+
+<h2 id="helperfunctions">Helper functions</h2>
+
+<p>The standard library provide helper functions to generate multiple type of pages:</p>
+
+<ul>
+<li><code>mkSplit</code>: to split a data list between multiple pages, used to create archive like pages.</li>
+<li><code>mkPageList</code>: to generate a list of pages from a list of data.</li>
+<li><code>mkMultipages</code>: to split a multipage data between multiple pages.</li>
+<li><code>mkTaxonomyPages</code>: to generate taxonomy pages from taxonomy data.</li>
+</ul>
+
+
+       
+    </div>
+  </article>
+</div>
+
+</div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="site-title-wrapper">
+      <h1 class="site-title">
+          <a title="Ghostwriter Blog" href="https://styx-static.github.io/styx-theme-casper/">Ghostwriter Blog</a>
+      </h1>
+      <a class="button-square button-jump-top js-jump-top" href="#">
+          <i class="fa fa-angle-up"></i>
+      </a>
+    </div>
+
+    <p class="footer-copyright">
+        <span>&copy; 2017. All rights reserved. 
+</span>
+    </p>
+    <p class="footer-copyright">
+        <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>
+    </p>
+  </div>
+</footer>
+<script crossorigin="anonymous" src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+<script crossorigin="anonymous" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+<script crossorigin="anonymous" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/nix.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Themes - Ghostwriter Blog</title>
+<link href="https://styx-static.github.io/styx-theme-casper/feed.xml" rel="alternate" type="application/atom+xml" />
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css" rel="stylesheet" type="text/css" />
+<link href="https://styx-static.github.io/styx-theme-casper/styles/style.css" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic" rel="stylesheet" type="text/css" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/favicon.png">
+
+<meta name="description" content="Ghostwriter example description">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta property="og:title" content="Ghostwriter example">
+<meta property="og:description" content="Ghostwriter example description">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://styx-static.github.io/styx-theme-casper/">
+</head>
+<body>
+<div id="wrapper">
+<header class="site-header">
+<div class="container">
+<div class="site-title-wrapper">
+<h1 class="site-title">
+<a title="Ghostwriter Blog" href="https://styx-static.github.io/styx-theme-casper/">Ghostwriter Blog</a>
+</h1>
+
+<!-- rss -->
+<a class="button-square" href="https://styx-static.github.io/styx-theme-casper/feed.xml"><i class="fa fa-rss"></i></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<ul class="site-nav">
+<li class="site-nav-item"><a href="https://styx-static.github.io/styx-theme-casper/index.html" title="Home">Home</a></li>
+
+<li class="site-nav-item"><a href="https://styx-static.github.io/styx-theme-casper/about.html" title="About">About</a></li>
+
+</ul>
+
+</header>
+<div id="container">
+<div class="container">
+  <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">Themes</h1>
+      <p class="post-description" itemprop="description"><p>This post introduce themes, a central concept in styx.</p>
+</p>
+
+      <p class="post-date">
+        <span>Published <time datetime="2014-09-28" itemprop="datePublished">Sun, Sep 28, 2014</time></span>
+        <span>by</span>
+<span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+  <span itemprop="name">
+    John Doe
+  </span>
+</span>
+
+      </p>
+    </header>
+
+    <div class="post-content clearfix" itemprop="articleBody">
+      <p>Themes are more than just a way to customize a site looks. </p>
+
+<p>A theme can provide:</p>
+
+<ul>
+<li>Template files</li>
+<li>Static files</li>
+<li>A configuration interface</li>
+<li>An example site</li>
+<li>A function library</li>
+</ul>
+
+<p>A theme can be extended by another, and multiple themes can be combined together.</p>
+
+<h2 id="basics">Basics</h2>
+
+<p>Themes are declared in <code>site.nix</code>. Local themes are used by proving a path, but is possible to use remote themes, like themes of the <code>styx-themes</code> directly.</p>
+
+<p>To use a themes, it is just required to add it to the <code>themes</code> list:</p>
+
+<pre><code class="nix">  themes = [
+    styx-themes.generic-templates
+    ./themes/my-theme
+  ];
+</code></pre>
+
+<p>Themes at the beginning of the list have lower priority.<br/>
+In this example, the <code>styx-themes.generic-templates</code> is combined with the <code>./themes/my-theme</code> theme.</p>
+
+<h2 id="examplesites">Example sites</h2>
+
+<p>Themes of the <code>styx-themes</code> package provide an example site that can b previewed locally by running a single command:</p>
+
+<pre><code class="sh">$ styx preview --in $(nix-build --no-out-link -A styx-themes.showcase '&lt;nixpkgs&gt;')/example
+</code></pre>
+
+<p>The list of themes in the <code>styx-themes</code> set can be listed with the following command:</p>
+
+<pre><code class="sh">$ nix-env -f &quot;&lt;nixpkgs&gt;&quot; -qaP -A styx-themes
+styx-themes.agency    styx-theme-agency-2016-12-03
+styx-themes.hyde      styx-theme-hyde-2016-12-03
+styx-themes.orbit     styx-theme-orbit-2016-12-03
+styx-themes.showcase  styx-theme-showcase-2016-12-04
+</code></pre>
+
+<h2 id="configurationinterface">Configuration interface</h2>
+
+<p>A theme can provide many configuration options that can be used to customize it.<br/>
+These configuration options can be used and changed in the site <code>conf.nix</code>. An interesting feature is that these options can be typed, and if they are styx will automatically do a type check when building a site.</p>
+
+<h2 id="documentation">Documentation</h2>
+
+<p>Themes that are part of the <code>styx-themes</code> are documented in the styx documentation that can be launched with the following command:</p>
+
+<pre><code class="sh">$ styx doc
+</code></pre>
+
+<p>It is also possible to generate a documentation for the themes used in a site. In site root run the following command:</p>
+
+<pre><code class="sh">$ styx site-doc
+</code></pre>
+
+
+       
+    </div>
+  </article>
+</div>
+
+</div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="site-title-wrapper">
+      <h1 class="site-title">
+          <a title="Ghostwriter Blog" href="https://styx-static.github.io/styx-theme-casper/">Ghostwriter Blog</a>
+      </h1>
+      <a class="button-square button-jump-top js-jump-top" href="#">
+          <i class="fa fa-angle-up"></i>
+      </a>
+    </div>
+
+    <p class="footer-copyright">
+        <span>&copy; 2017. All rights reserved. 
+</span>
+    </p>
+    <p class="footer-copyright">
+        <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>
+    </p>
+  </div>
+</footer>
+<script crossorigin="anonymous" src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+<script crossorigin="anonymous" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+<script crossorigin="anonymous" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/languages/nix.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
