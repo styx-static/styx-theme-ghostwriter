@@ -190,7 +190,7 @@ Then <code>gen-sample-data</code> command that will generate some data for us:</
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-nix" data-lang="nix">  data = {
-    about = lib.loadFile { file = ./data/sample/pages/about.md"; inherit env; };
+    about = lib.loadFile { file = ./data/sample/pages/about.md; inherit env; };
   };</code></pre>
 </div>
 </div>
@@ -221,7 +221,7 @@ Then <code>gen-sample-data</code> command that will generate some data for us:</
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-nix" data-lang="nix">  data = {
-    about = lib.loadFile { file = ./data/sample/pages/about.md"; inherit env; };
+    about = lib.loadFile { file = ./data/sample/pages/about.md; inherit env; };
     menu  = [ pages.about ];
   };</code></pre>
 </div>
@@ -240,7 +240,7 @@ Then <code>gen-sample-data</code> command that will generate some data for us:</
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-nix" data-lang="nix">  data = {
-    about = lib.loadFile { file = ./data/sample/pages/about.md"; inherit env; };
+    about = lib.loadFile { file = ./data/sample/pages/about.md; inherit env; };
     menu  = [ pages.about ];
     posts = lib.sortBy "date" "dsc" (lib.loadDir { dir = ./data/sample/posts; inherit env; });
   };</code></pre>
@@ -630,14 +630,14 @@ Any styx site can also be deployed with NixOps.</p>
 <pre><code class="nix">{{ templates.media.youtube { id = &quot;YbUPdv03ciI&quot;; } }}
 </code></pre>
 
-<p><iframe width="560" height="315" src="https://www.youtube.com/embed/YbUPdv03ciI?ecver=1" frameborder="0" allowfullscreen></iframe></p>
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/YbUPdv03ciI?ecver=1" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
 
 <h2 id="vimeovideos">Vimeo videos</h2>
 
 <pre><code class="nix">{{ templates.media.vimeo { id = &quot;124510855&quot;; } }}
 </code></pre>
 
-<p><iframe src="https://player.vimeo.com/video/124510855" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></p>
+<p><iframe src="https://player.vimeo.com/video/124510855" width="640" height="360" frameborder="0" webkitallowfullscreen="webkitallowfullscreen=" mozallowfullscreen="mozallowfullscreen=" allowfullscreen="allowfullscreen"></iframe></p>
 
 <h2 id="speackerdeckpresentation">Speacker deck presentation</h2>
 
@@ -658,14 +658,14 @@ Any styx site can also be deployed with NixOps.</p>
 <pre><code class="nix">{{ templates.media.giphy { id = &quot;4yh9SoRl7QLjW&quot;; height = 360; width = 480; } }}
 </code></pre>
 
-<p><iframe src="//giphy.com/embed/4yh9SoRl7QLjW" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></p>
+<p><iframe src="//giphy.com/embed/4yh9SoRl7QLjW" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen="allowFullScreen"></iframe></p>
 
 <h2 id="slideshare">Slide share</h2>
 
 <pre><code class="nix">{{ templates.media.slideshare { embedCode = &quot;60836660&quot;; } }}
 </code></pre>
 
-<p><iframe src='https://www.slideshare.net/slideshow/embed_code/60836660' width='640' height='480' allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></p>
+<p><iframe src='https://www.slideshare.net/slideshow/embed_code/60836660' width='640' height='480' allowfullscreen="allowfullscreen" webkitallowfullscreen="webkitallowfullscreen=" mozallowfullscreen="mozallowfullscreen"></iframe></p>
 
 <h2 id="twitter">Twitter</h2>
 
@@ -673,7 +673,7 @@ Any styx site can also be deployed with NixOps.</p>
 </code></pre>
 
 <p><a class="twitter-timeline" data-height="600" href="https://twitter.com/nixos_org">Tweets by nixos_org</a>
- <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script> </p>
+ <script async="async" src="//platform.twitter.com/widgets.js" charset="utf-8"></script> </p>
 
       </div>
     </content>
@@ -723,18 +723,22 @@ In this example, the <code>styx-themes.generic-templates</code> is combined with
 
 <h2 id="examplesites">Example sites</h2>
 
-<p>Themes of the <code>styx-themes</code> package provide an example site that can b previewed locally by running a single command:</p>
+<p>Themes of the <code>styx-themes</code> package provide an example site that can be previewed locally by running a single command:</p>
 
-<pre><code class="sh">$ styx preview --in $(nix-build --no-out-link -A styx-themes.showcase '&lt;nixpkgs&gt;')/example
+<pre><code class="sh">$ styx preview-theme showcase
 </code></pre>
 
 <p>The list of themes in the <code>styx-themes</code> set can be listed with the following command:</p>
 
-<pre><code class="sh">$ nix-env -f &quot;&lt;nixpkgs&gt;&quot; -qaP -A styx-themes
-styx-themes.agency    styx-theme-agency-2016-12-03
-styx-themes.hyde      styx-theme-hyde-2016-12-03
-styx-themes.orbit     styx-theme-orbit-2016-12-03
-styx-themes.showcase  styx-theme-showcase-2016-12-04
+<pre><code class="sh">$ styx preview-theme
+Please select a theme, available themes are:               
+- agency                                                   
+- generic-templates                                        
+- ghostwriter                                              
+- hyde                                                     
+- nix                                                      
+- orbit                                                    
+- showcase
 </code></pre>
 
 <h2 id="configurationinterface">Configuration interface</h2>
